@@ -16,6 +16,7 @@ const passport = require('passport');
 
 const { database } = require('./keys.js');
 
+const {PORT} = require('./routes/config.js')
 
 
 //inicializaciones 
@@ -23,7 +24,7 @@ const app = express();
 require('./lib/passtport.js');
 
 //configuraciones
-app.set('port', process.env.PORT || 4000);
+app.set('port', PORT);
 app.set('views', path.join(__dirname, 'views'));
 app.engine('.hbs', exphbs.engine({//app.engine
     defaultLayout: 'main',
@@ -68,6 +69,6 @@ app.use('/links', require('./routes/links.js'));
 app.use(express.static(path.join(__dirname, 'public')));
 
 //Starting the server
-app.listen(app.get('port'), () => {
-    console.log('server on port', app.get('port'));
+app.listen(PORT, () => {
+    console.log('server on port', PORT);
 });
